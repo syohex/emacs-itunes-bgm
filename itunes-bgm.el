@@ -68,10 +68,11 @@
      proc
      (lambda (process _event)
        (when (eq (process-status process) 'exit)
-         (if (not (null preview-info))
-             (itunes-bgm--play-previews (cdr preview-info))
-           (setq itunes-bgm--process nil)
-           (message "finish")))))))
+         (let ((rest-previews (cdr preview-info)))
+           (if (not (null rest-previews))
+               (itunes-bgm--play-previews rest-previews)
+             (setq itunes-bgm--process nil)
+             (message "finish"))))))))
 
 (defun itunes-bgm--collect-preview-urls (results)
   (cl-loop for result across results
