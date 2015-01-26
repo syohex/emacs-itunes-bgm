@@ -15,7 +15,7 @@ BGM by [iTunes search API](https://www.apple.com/itunes/affiliates/resources/doc
 
 ## Basic Usage
 
-#### `M-x itunes-bgm`(`(itunes-bgm keyword)`)
+#### `M-x itunes-bgm`
 
 Search keyword and play its result.
 
