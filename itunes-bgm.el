@@ -67,7 +67,7 @@
     (set-process-sentinel
      proc
      (lambda (process _event)
-       (when (eq (process-status process) 'exit)
+       (when (memq (process-status process) '(exit signal))
          (let ((rest-previews (cdr preview-info)))
            (if (not (null rest-previews))
                (itunes-bgm--play-previews rest-previews)
@@ -106,6 +106,11 @@
   (interactive
    (list (read-string "Keyword: " nil 'itunes-bgm--history)))
   (itunes-bgm--search term itunes-bgm-country "music"))
+
+(defun itunes-bgm-next ()
+  (interactive)
+  (when itunes-bgm--process
+    (kill-process itunes-bgm--process)))
 
 (defun itunes-bgm-kill ()
   (interactive)
